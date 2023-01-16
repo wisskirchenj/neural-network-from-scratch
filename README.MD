@@ -22,7 +22,7 @@ Install the wheel file using pip after clone/fork:
 
 The project is a first experience in every aspect of creating a fully connected neural network. We will code feedforward
 networks and implement backpropagation and weight initialization. We will also create a training loop and visualize the
-model's training process. We use Zalando's "Fashion MNIST" categorized image data, which are offered splitted into
+model's training process. We use Zalando's "Fashion MNIST" categorized image data, which are offered split into
 separate train and test data sets. The project serves as a solid base to continue with neural network science.
 
 Have fun!
