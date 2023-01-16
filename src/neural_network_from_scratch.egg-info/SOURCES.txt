@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+src/neural/__init__.py
+src/neural/datasets.py
+src/neural/initialization.py
+src/neural/neural_network.py
+src/neural/provide_data.py
+src/neural/__pycache__/datasets.cpython-311.pyc
+src/neural/__pycache__/initialization.cpython-311.pyc
+src/neural/__pycache__/provide_data.cpython-311.pyc
+src/neural_network_from_scratch.egg-info/PKG-INFO
+src/neural_network_from_scratch.egg-info/SOURCES.txt
+src/neural_network_from_scratch.egg-info/dependency_links.txt
+src/neural_network_from_scratch.egg-info/top_level.txt
