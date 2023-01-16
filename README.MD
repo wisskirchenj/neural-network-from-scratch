@@ -1,6 +1,6 @@
 # IDEA EDU Course
 
-Graduate project implemented in the track 'Machine Learning Algorithms from Scratch' of hyperskill.org's JetBrains Academy.
+Graduate project implemented in the track 'Machine Learning Algorithms from Scratch' of hyperskill.org JetBrains Academy.
 
 ## Technology / External Libraries
 
@@ -22,7 +22,7 @@ Install the wheel file using pip after clone/fork:
 
 The project is a first experience in every aspect of creating a fully connected neural network. We will code feedforward
 networks and implement backpropagation and weight initialization. We will also create a training loop and visualize the
-model's training process. We use Zalando's "Fashion MNIST" categorized image data, which are offered split into
+model's training process. We use Zalando-owned "Fashion MNIST" categorized image data, which are offered split into
 separate train and test data sets. The project serves as a solid base to continue with neural network science.
 
 Have fun!
@@ -35,6 +35,6 @@ Have fun!
 
 15.01.23 Project started - gitHub repo and project structure setup.
 
-15.01.23: Stage 1 completed - load Zalando's "Fashion MNIST" categorized image data as CSV over http, which are offered as
+15.01.23: Stage 1 completed - load Zalando-owned "Fashion MNIST" categorized image data as CSV over http, which are offered as
 separate train and test data sets. Import the two data sets into Panda DataFrames and distribute them to x- and y-arrays
 using One-Hot-Encoding. Implement a Xavier initialization and sigmoid function to initialize neural network weights.

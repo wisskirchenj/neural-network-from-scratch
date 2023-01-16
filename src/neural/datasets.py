@@ -1,16 +1,16 @@
-from numpy import ndarray
+from numpy import array
 
 
 MAX_VALUE = 255
 
 
-def scale(x_array: ndarray) -> ndarray:
+def scale(x_array: array) -> array:
     return x_array / MAX_VALUE
 
 
 class Datasets:
 
-    def __init__(self, x_train: ndarray, x_test: ndarray, y_train: ndarray, y_test: ndarray):
+    def __init__(self, x_train: array, x_test: array, y_train: array, y_test: array):
         self.x_train = x_train
         self.x_test = x_test
         self.y_train = y_train
