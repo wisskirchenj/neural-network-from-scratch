@@ -12,5 +12,4 @@ class DatasetsTest(unittest.TestCase):
         sets.scale_x_sets()
         self.assertEqual(np.array([4 / MAX_VALUE]), sets.x_train)
         assert_array_equal(
-            np.array([[8 / MAX_VALUE, 4 / MAX_VALUE], [12 / MAX_VALUE, 6 / MAX_VALUE]]),sets.x_test)
-
+            np.array([[8 / MAX_VALUE, 4 / MAX_VALUE], [12 / MAX_VALUE, 6 / MAX_VALUE]]), sets.x_test)
