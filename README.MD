@@ -16,7 +16,7 @@ The sources of main project tasks (7 stages) and pytest testing.
 
 Install the wheel file using pip after clone/fork:
 
-> $ pip install dist/neural_network-3.11.1-py3-none-any.whl
+> $ pip install dist/neural_network_from_scratch-3.11.1-py3-none-any.whl
 
 ## Program description
 
