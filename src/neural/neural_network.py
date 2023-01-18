@@ -1,11 +1,11 @@
 from neural.provide_data import load_train_and_test_data
 from neural.datasets import Datasets
-from neural.initialization import xavier, sigmoid
+from neural.one_layer_neural import OneLayerNeural
 
 import numpy as np
 
 
-def one_hot_encode(data: np.array) -> np.array:
+def one_hot_encode(data: np.ndarray) -> np.ndarray:
     y_values = np.zeros((data.size, data.max(initial=0) + 1))
     rows = np.arange(data.size)
     y_values[rows, data] = 1
@@ -26,11 +26,9 @@ def load_datasets() -> Datasets:
 def main():
     datasets: Datasets = load_datasets()
     datasets.scale_x_sets()
-    print(
-        [datasets.x_train[2, 778], datasets.x_test[0, 774]],
-        xavier(2, 3, 3042022).flatten().tolist(),
-        [sigmoid(i) for i in range(-1, 3)]
-    )
+    n_in, n_out = datasets.get_input_output_dimension()
+    neural_network = OneLayerNeural(n_in, n_out)
+    print(neural_network.forward(datasets.x_train[0]) + neural_network.forward(datasets.x_train[1]))
 
 
 if __name__ == '__main__':

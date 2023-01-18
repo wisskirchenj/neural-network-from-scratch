@@ -38,3 +38,7 @@ Have fun!
 15.01.23: Stage 1 completed - load Zalando-owned "Fashion MNIST" categorized image data as CSV over http, which are offered as
 separate train and test data sets. Import the two data sets into Panda DataFrames and distribute them to x- and y-arrays
 using One-Hot-Encoding. Implement a Xavier initialization and sigmoid function to initialize neural network weights.
+
+18.01.23: Stage 2 completed - implement a single neuron layer, initialize network weights and neuron biases using uniformly
+distributed random numbers, start training the network - only implementing feedforward step. Have it dry-run with some
+few image data.
