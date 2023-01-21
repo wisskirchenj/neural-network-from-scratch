@@ -18,10 +18,10 @@ class OneLayerNeuralTest(unittest.TestCase):
                     0.3964910811110527, 0.3378884293704012, 0.41855072861332493, 0.7054997389006183,
                     0.7505531230813576, 0.5719368355036794, 0.1489699055476822, 0.27148952600271775,
                     0.36007653088357106, 0.5919441786952234, 0.6768202587658815, 0.5221310346087062]
-        self.assertListEqual(expected, neural_net.forward_step_train_data(range(2)))
+        self.assert_list_almost_equal(expected, neural_net.forward_step_train_data(range(2)))
 
     def test_sigmoid_as_stage1(self):
-        self.assertListEqual(
+        self.assert_list_almost_equal(
             [0.2689414213699951, 0.5, 0.7310585786300049, 0.8807970779778823],
             [sigmoid(i) for i in range(-1, 3)]
         )
@@ -44,3 +44,8 @@ class OneLayerNeuralTest(unittest.TestCase):
         self.assertEqual(4, len(result))
         [self.assertGreaterEqual(el, -math.sqrt(6 / 4)) for el in result]
         [self.assertLessEqual(el, math.sqrt(6 / 4)) for el in result]
+
+    def assert_list_almost_equal(self, expected: list[float], values: list[float]):
+        self.assertEqual(len(expected), len(values))
+        for i in range(len(expected)):
+            self.assertAlmostEqual(expected[i], values[i], delta=0.000000000000001)

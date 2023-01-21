@@ -47,4 +47,3 @@ class Datasets:
     # in the final network layer
     def get_output_dimension(self) -> int:
         return self.y_test.shape[1]
-
