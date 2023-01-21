@@ -15,5 +15,4 @@ class OneLayerNeural:
         return [sigmoid(self.calc_neuron_input(image_data, n)) for n in range(self.neuron_count)]
 
     def calc_neuron_input(self, image_data: np.ndarray, neuron: int) -> float:
-        summands = list(map(lambda x, y: x * y, image_data, self.weights[:, neuron]))
-        return sum(summands, self.bias[neuron])
+        return np.dot(image_data, self.weights[:, neuron]) + self.bias[neuron]
