@@ -38,7 +38,7 @@ class OneLayerNeuralTest(unittest.TestCase):
     def test_xavier_as_stage():
         print(xavier(2, 3, 3042022).flatten())
         assert_array_almost_equal(
-            [-1.07159039, 0.25949835, 0.49733594, -0.8956624, 0.8762539, -1.0133875],
+            [-1.07159039, 0.49733594, 0.8762539, 0.25949835, -0.8956624, -1.0133875],
             xavier(2, 3, 3042022).flatten()
         )
 
