@@ -20,7 +20,7 @@ def sigmoid(x_vec: np.ndarray) -> np.ndarray:
 
 # derivative of the sigmoid function
 def sigmoid_prime(x_vec: np.ndarray) -> np.ndarray:
-    return np.multiply(sigmoid(x_vec), (1 - sigmoid(x_vec)))
+    return sigmoid(x_vec) * (1 - sigmoid(x_vec))
 
 
 # calc mean square error on the 1d arrays given
@@ -41,20 +41,49 @@ def cost_prime(y_predicted: np.ndarray, y_categorical: np.ndarray) -> np.ndarray
 class OneLayerNeural:
 
     # the network dimensions itself by the data feed.
-    def __init__(self, data: Datasets):
+    def __init__(self, data: Datasets, eta=0.1):
         self.data = data
+        # "learning rate" eta determines convergence of gradient descent (kind of step width factor)
+        self.eta = eta
         self.neuron_count = data.get_output_dimension()
         # use seeds for test assertions
         self.weights = xavier(data.get_input_dimension(), self.neuron_count, 3042022)
         self.bias = xavier(1, self.neuron_count, 3042022).flatten()
+        # initialize z's list of the neuron activation function input, that is repeatedly used in back propagation
+        self.zs = []
+        # count the epochs performed on training data (sub-)set
+        self.epoch_count = 0
 
-    # Perform a forward propagation step (part of epoch) on a subset (specified as index range) of the train data
+    # Perform a forward propagation step (e.g. as part of epoch) on a subset (specified as index range)
+    # of the train data or test data
     def forward_step(self, subrange: range, use_train_data=True) -> np.ndarray:
         dataset = self.data.x_train if use_train_data else self.data.x_test
-        return np.array([sigmoid(self.weights.T  @ dataset[i] + self.bias) for i in subrange])
+        self.zs = [self.weights.T  @ dataset[i] + self.bias for i in subrange]
+        return np.array([sigmoid(z) for z in self.zs])
 
-    def mean_square_error(self, forward_result: np.ndarray, subrange: range, use_train_data=True):
+    # perform one "Epoch" consisting of a back propagation with forward step and the according update of weights
+    # and biases. These are updated "permanently" in the neural network's fields.
+    def epoch(self, subrange: range):
+        gradient_weight, gradient_bias = self.backward_propagation(subrange)
+        self.weights -= self.eta * gradient_weight
+        self.bias -= self.eta * gradient_bias
+        self.epoch_count += 1
+
+    def backward_propagation(self, subrange: range) -> tuple[np.ndarray, np.ndarray]:
+        forward_result = self.forward_step(subrange)
+        gradient_weight = np.zeros(self.weights.shape)
+        gradient_bias = np.zeros(self.bias.shape)
+        for i, index in enumerate(subrange):
+            bias_contribution = cost_prime(forward_result[i], self.data.y_train[index]) \
+                                * sigmoid_prime(self.zs[i]) / len(subrange)
+            gradient_bias += bias_contribution
+            gradient_weight += np.outer(self.data.x_train[index], bias_contribution)
+        return gradient_weight, gradient_bias
+
+    # perform a forward step with the currently trained (or untrained) weights and biases
+    # and return its mean square error compared to the true categorical data
+    def mean_square_error(self, subrange: range, use_train_data=True) -> float:
         y_categorical = self.data.y_train if use_train_data else self.data.y_test
         y_categorical = y_categorical[subrange].flatten()
-        y_predicted = forward_result.flatten()
+        y_predicted = self.forward_step(subrange, use_train_data).flatten()
         return mse(y_predicted, y_categorical)

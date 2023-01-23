@@ -36,7 +36,6 @@ class OneLayerNeuralTest(unittest.TestCase):
 
     @staticmethod
     def test_xavier_as_stage():
-        print(xavier(2, 3, 3042022).flatten())
         assert_array_almost_equal(
             [-1.07159039, 0.49733594, 0.8762539, 0.25949835, -0.8956624, -1.0133875],
             xavier(2, 3, 3042022).flatten()
@@ -52,6 +51,16 @@ class OneLayerNeuralTest(unittest.TestCase):
         self.assertEqual(4, len(result))
         [self.assertGreaterEqual(el, -math.sqrt(6 / 4)) for el in result]
         [self.assertLessEqual(el, math.sqrt(6 / 4)) for el in result]
+
+    def test_back_propagation_stage3(self):
+        neural_net = setup_neural()
+        r = range(2)
+        neural_net.epoch(r)
+        self.assertAlmostEqual(0.027703041616827673, neural_net.mean_square_error(r))
+
+    def test_mean_square_error(self):
+        neural_net = setup_neural()
+        self.assertAlmostEqual(0.2308404313307, neural_net.mean_square_error(range(0, 2)))
 
     def test_mse_stage3(self):
         y1 = np.array([-1, 0, 1, 2])
@@ -69,12 +78,6 @@ class OneLayerNeuralTest(unittest.TestCase):
         y1 = np.array([-1, 0, 1, 2])
         assert_array_almost_equal([0.19661193324148185, 0.25, 0.19661193324148185, 0.10499358540350662],
                                   sigmoid_prime(y1))
-
-    def test_mean_square_error(self):
-        neural_net = setup_neural()
-        self.assertEqual(0.0, neural_net.mean_square_error(neural_net.data.y_train, range(0, 2)))
-        forward = neural_net.forward_step(range(0, 2))
-        self.assertAlmostEqual(0.2308404313307, neural_net.mean_square_error(forward, range(0, 2)))
 
     def assert_list_almost_equal(self, expected: list[float], values: list[float]):
         self.assertEqual(len(expected), len(values))

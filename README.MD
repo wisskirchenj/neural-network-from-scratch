@@ -42,3 +42,7 @@ using One-Hot-Encoding. Implement a Xavier initialization and sigmoid function t
 18.01.23: Stage 2 completed - implement a single neuron layer, initialize network weights and neuron biases using uniformly
 distributed random numbers, start training the network - only implementing feedforward step. Have it dry-run with some
 few image data.
+
+23.01.23: Stage 3 completed - implement full epoch training cycles for the single neuron layer. An epoch cycle consists
+of a forward step, a backward propagation and an update of the networks weights and biases. Iterative epochs train the
+model on the training data set.
