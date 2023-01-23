@@ -1,4 +1,4 @@
-from math import exp, sqrt
+from math import sqrt
 import numpy as np
 from numpy.random import default_rng
 from neural.datasets import Datasets
@@ -15,7 +15,7 @@ def xavier(n_in: int, n_out: int, seed: int) -> np.ndarray:
 # which is the output of a neuron layer - and input to the next layer.
 # For any real x, sigmoid(x) lies in [0,1] - function is applied to all elements of a vector
 def sigmoid(x_vec: np.ndarray) -> np.ndarray:
-    return np.array([1 / (1 + exp(-x)) for x in x_vec])
+    return 1 / (1 + np.exp(-x_vec))
 
 
 # derivative of the sigmoid function
