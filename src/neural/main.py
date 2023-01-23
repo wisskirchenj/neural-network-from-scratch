@@ -15,7 +15,7 @@ def setup_network_with_data() -> OneLayerNeural:
 
 def main():
     neural_network = setup_network_with_data()
-    print(neural_network.forward_step_train_data(range(2)))
+    print(neural_network.forward_step(range(2)))
 
 
 if __name__ == '__main__':
