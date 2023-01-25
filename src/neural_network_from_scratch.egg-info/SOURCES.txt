@@ -24,4 +24,5 @@ test/__pycache__/test_initialization.cpython-311-pytest-7.2.1.pyc
 test/__pycache__/test_neural_network.cpython-311-pytest-7.2.1.pyc
 test/__pycache__/test_one_layer_neural.cpython-311-pytest-7.2.1.pyc
 test/__pycache__/test_provide_data.cpython-311-pytest-7.2.1.pyc
+test/data/test_subset.csv
 test/data/train_subset.csv

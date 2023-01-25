@@ -4,8 +4,8 @@ from numpy.random import default_rng
 from neural.datasets import Datasets
 
 
-# Xavier' initialization is used to initialize network weights and biases with random numbers of an interval
-# parameterized by input and output dimensions,  thus optimized in sensitivity to the sigmaoid activation function
+# Xavier's initialization is used to initialize network weights and biases with random numbers of an interval
+# parameterized by input and output dimensions,  thus optimized in sensitivity to the sigmoid activation function
 def xavier(n_in: int, n_out: int, seed: int) -> np.ndarray:
     limit = sqrt(6 / (n_in + n_out))
     return default_rng(seed=seed).uniform(-limit, limit, (n_in, n_out))
@@ -87,3 +87,21 @@ class OneLayerNeural:
         y_categorical = y_categorical[subrange].flatten()
         y_predicted = self.forward_step(subrange, use_train_data).flatten()
         return mse(y_predicted, y_categorical)
+
+    # perform a forward step on all test data, compare each network categorization
+    # (i.e. # of neuron with maximal value = argmax) with the true label (as in one-hit encoded y_test set)
+    # and count the correct categorization. Return the ratio of correct categorizations.
+    def accuracy_in_test(self) -> float:
+        count = 0
+        data_size = self.data.y_test.shape[0]
+        for i in range(data_size):
+            if self.data.y_test[i][np.argmax(self.forward_step(range(i, i + 1), use_train_data=False))] == 1:
+                count = count + 1
+        return count / data_size
+
+    # perform an epoch on all train data and return accuracy on test data
+    def next_epoch_accuracy(self, batch_size=100) -> float:
+        train_datasize = self.data.x_train.shape[0]
+        for batch in range(0, train_datasize, batch_size):
+            self.epoch(range(batch, batch + batch_size))
+        return self.accuracy_in_test()

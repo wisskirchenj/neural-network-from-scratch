@@ -10,9 +10,9 @@ from neural.datasets import Datasets
 
 def setup_neural() -> OneLayerNeural:
     neural.provide_data.PATH_DATA = '.'
-    test_data_path = 'test/data/train_subset.csv'
-    data = neural.provide_data.read_csv_as_bytes(test_data_path)
-    return OneLayerNeural(Datasets(data, data))
+    train_data = neural.provide_data.read_csv_as_bytes('test/data/train_subset.csv')
+    test_data = neural.provide_data.read_csv_as_bytes('test/data/test_subset.csv')
+    return OneLayerNeural(Datasets(train_data, test_data))
 
 
 class OneLayerNeuralTest(unittest.TestCase):
@@ -78,6 +78,15 @@ class OneLayerNeuralTest(unittest.TestCase):
         y1 = np.array([-1, 0, 1, 2])
         assert_array_almost_equal([0.19661193324148185, 0.25, 0.19661193324148185, 0.10499358540350662],
                                   sigmoid_prime(y1))
+
+    def test_accuracy_in_test(self):
+        neural_net = setup_neural()
+        self.assertAlmostEqual(0.07692307692307693, neural_net.accuracy_in_test())
+
+    def test_next_epoch_accuracy(self):
+        neural_net = setup_neural()
+        accuracies = [neural_net.next_epoch_accuracy(batch_size=2) for _ in range(2)]
+        self.assert_list_almost_equal([0.3076923076923077, 0.23076923076923078], accuracies)
 
     def assert_list_almost_equal(self, expected: list[float], values: list[float]):
         self.assertEqual(len(expected), len(values))
