@@ -6,7 +6,7 @@ Graduate project implemented in the track 'Machine Learning Algorithms from Scra
 
 - Python 3.11.1, 
 - Pandas 1.5.2
-- with packages: numpy, matplotlib, requests, os, collections, unittest, unittest.mock
+- with packages: numpy, matplotlib, tqdm, requests, os, collections, unittest, unittest.mock
 
 ## Repository Contents
 
@@ -39,10 +39,14 @@ Have fun!
 separate train and test data sets. Import the two data sets into Panda DataFrames and distribute them to x- and y-arrays
 using One-Hot-Encoding. Implement a Xavier initialization and sigmoid function to initialize neural network weights.
 
-18.01.23: Stage 2 completed - implement a single neuron layer, initialize network weights and neuron biases using uniformly
+18.01.23: Stage 2 completed - implement a single neuron layer network, initialize network weights and neuron biases using uniformly
 distributed random numbers, start training the network - only implementing feedforward step. Have it dry-run with some
 few image data.
 
 23.01.23: Stage 3 completed - implement full epoch training cycles for the single neuron layer. An epoch cycle consists
 of a forward step, a backward propagation and an update of the networks weights and biases. Iterative epochs train the
 model on the training data set.
+
+25.01.23: Stage 4 completed - accuracy measure of category recognition on test data set implemented. Convenience method 
+implemented on network to run an epoch on full train data with parameterizable batch size and return accuracy afterwards.
+Have 20 training iterations and track and plot results with matplotlib.
