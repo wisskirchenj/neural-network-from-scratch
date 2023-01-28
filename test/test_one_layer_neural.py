@@ -1,8 +1,8 @@
 import unittest
-
-import numpy as np
 from numpy.testing import assert_array_equal, assert_array_almost_equal
+import numpy as np
 import math
+
 import neural.provide_data
 from neural.one_layer_neural import OneLayerNeural, sigmoid, xavier, mse, cost_prime, sigmoid_prime
 from neural.datasets import Datasets
@@ -79,7 +79,7 @@ class OneLayerNeuralTest(unittest.TestCase):
         assert_array_almost_equal([0.19661193324148185, 0.25, 0.19661193324148185, 0.10499358540350662],
                                   sigmoid_prime(y1))
 
-    def test_accuracy_in_test(self):
+    def test_accuracy_in_test_stage4(self):
         neural_net = setup_neural()
         self.assertAlmostEqual(0.07692307692307693, neural_net.accuracy_in_test())
 

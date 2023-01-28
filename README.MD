@@ -50,3 +50,6 @@ model on the training data set.
 25.01.23: Stage 4 completed - accuracy measure of category recognition on test data set implemented. Convenience method 
 implemented on network to run an epoch on full train data with parameterizable batch size and return accuracy afterwards.
 Have 20 training iterations and track and plot results with matplotlib.
+
+28.01.23: Stage 5 completed - setup of a **two layer neural network** with a hidden layer of (default) 64 neurons. This
+stage does a forward step with 2 image records of the training set through the network.

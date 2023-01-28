@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 from neural.provide_data import load_train_and_test_data
 from neural.datasets import Datasets
 from neural.one_layer_neural import OneLayerNeural
+from neural.two_layer_neural import TwoLayerNeural
 
 
 def plot(loss_history: list, accuracy_history: list, filename='plot'):
@@ -39,7 +40,7 @@ def setup_network_with_data(eta=0.1) -> OneLayerNeural:
     return OneLayerNeural(datasets, eta=eta)
 
 
-def main():
+def main_stage4():
     neural_network = setup_network_with_data(eta=0.5)
     print(f'[{neural_network.accuracy_in_test()}]')
     costs = []
@@ -49,6 +50,11 @@ def main():
         costs.append(neural_network.mean_square_error(range(60000)))
         accuracies.append(neural_network.accuracy_in_test())
     plot(costs, accuracies)
+
+
+def main():
+    neural_network = TwoLayerNeural(load_datasets())
+    print(neural_network.forward_step(range(2)).flatten().tolist())
 
 
 if __name__ == '__main__':
