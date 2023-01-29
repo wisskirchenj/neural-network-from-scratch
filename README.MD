@@ -29,7 +29,7 @@ Have fun!
 
 ## Project completion
 
-[//]: # (Project was completed on 08.01.23)
+Project was completed on 29.01.23
 
 ## Progress
 
@@ -56,3 +56,8 @@ stage does a forward step with 2 image records of the training set through the n
 
 29.01.23: Stage 6 completed - run an epoch-cycle for the **two layer neural network** and consider the mean square error.
 Use inheritance to derive the 1-layer and 2-layer network from a common base class with implemented methods for both.
+
+29.01.23: Final Stage 7 completed - do full 20 epochs on the 60k train data and measure on test data after
+each epoch. Setup is with batch_size=100 and eta=0.5 as with the 1-layer neural in stage 4. The results improve
+form accuracy of 85.5 % with 1 layer to 88% with 2 layers, while simultaneously increasing runtime by
+about a factor of 4. (~ 13 sec per epoch now)

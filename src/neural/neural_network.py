@@ -60,12 +60,10 @@ class NeuralNetwork:
     # (i.e. # of neuron with maximal value = argmax) with the true label (as in one-hit encoded y_test set)
     # and count the correct categorization. Return the ratio of correct categorizations.
     def accuracy_in_test(self) -> float:
-        count = 0
         data_size = self.data.y_test.shape[0]
-        for i in range(data_size):
-            if self.data.y_test[i][np.argmax(self.forward_step(range(i, i + 1), use_train_data=False))] == 1:
-                count = count + 1
-        return count / data_size
+        y_pred = np.argmax(self.forward_step(range(data_size), use_train_data=False), axis=1)
+        y_true = np.argmax(self.data.y_test, axis=1)
+        return float(np.mean(y_pred == y_true))
 
     # perform an epoch on all train data and return accuracy on test data
     def next_epoch_accuracy(self, batch_size=100) -> float:

@@ -40,9 +40,8 @@ def setup_network_with_data(eta=0.1) -> OneLayerNeural:
     return OneLayerNeural(datasets, eta=eta)
 
 
-def main_stage4():
-    neural_network = setup_network_with_data(eta=0.5)
-    print(f'[{neural_network.accuracy_in_test()}]')
+def main_plot():
+    neural_network = TwoLayerNeural(load_datasets(), eta=0.5)
     costs = []
     accuracies = []
     for _ in tqdm(range(20)):
@@ -52,11 +51,10 @@ def main_stage4():
     plot(costs, accuracies)
 
 
-def main():
-    neural_network = TwoLayerNeural(load_datasets(), eta=0.1)
-    neural_network.epoch(range(2))
-    print(f'[{neural_network.mean_square_error(range(2))}]')
+def main_hs():
+    neural_network = TwoLayerNeural(load_datasets(), eta=0.5)
+    print([neural_network.next_epoch_accuracy() for _ in range(20)])
 
 
 if __name__ == '__main__':
-    main()
+    main_plot()

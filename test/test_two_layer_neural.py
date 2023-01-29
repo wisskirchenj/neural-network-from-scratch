@@ -30,3 +30,17 @@ class TwoLayerNeuralTest(unittest.TestCase):
         neural_net.epoch(subrange)
         expected = 0.17205149953305524
         self.assertAlmostEqual(expected, neural_net.mean_square_error(subrange))
+
+    def test_next_epoch_accuracy_asin_stage7(self):
+        neural_net = setup_neural()
+        accuracies = [neural_net.next_epoch_accuracy(batch_size=2) for _ in range(10)]
+        self.assert_list_almost_equal([0.0, 0.23076923076923078, 0.23076923076923078,
+                                       0.23076923076923078, 0.23076923076923078, 0.23076923076923078,
+                                       0.23076923076923078, 0.23076923076923078, 0.23076923076923078,
+                                       0.3076923076923077],
+                                      accuracies)
+
+    def assert_list_almost_equal(self, expected: list[float], values: list[float]):
+        self.assertEqual(len(expected), len(values))
+        for i in range(len(expected)):
+            self.assertAlmostEqual(expected[i], values[i], delta=0.000000000000001)
