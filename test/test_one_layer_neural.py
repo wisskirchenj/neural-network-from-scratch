@@ -4,8 +4,8 @@ import numpy as np
 import math
 
 import neural.provide_data
-from neural.one_layer_neural import OneLayerNeural, sigmoid, xavier, mse, cost_prime, sigmoid_prime
-from neural.datasets import Datasets
+from neural.neural_network import sigmoid, xavier, mse, cost_prime, sigmoid_prime
+from neural.one_layer_neural import OneLayerNeural, Datasets
 
 
 def setup_neural() -> OneLayerNeural:

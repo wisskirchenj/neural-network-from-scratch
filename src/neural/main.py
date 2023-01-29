@@ -53,8 +53,9 @@ def main_stage4():
 
 
 def main():
-    neural_network = TwoLayerNeural(load_datasets())
-    print(neural_network.forward_step(range(2)).flatten().tolist())
+    neural_network = TwoLayerNeural(load_datasets(), eta=0.1)
+    neural_network.epoch(range(2))
+    print(f'[{neural_network.mean_square_error(range(2))}]')
 
 
 if __name__ == '__main__':

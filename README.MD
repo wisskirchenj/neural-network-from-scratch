@@ -53,3 +53,6 @@ Have 20 training iterations and track and plot results with matplotlib.
 
 28.01.23: Stage 5 completed - setup of a **two layer neural network** with a hidden layer of (default) 64 neurons. This
 stage does a forward step with 2 image records of the training set through the network.
+
+29.01.23: Stage 6 completed - run an epoch-cycle for the **two layer neural network** and consider the mean square error.
+Use inheritance to derive the 1-layer and 2-layer network from a common base class with implemented methods for both.

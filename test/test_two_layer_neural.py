@@ -2,8 +2,7 @@ import unittest
 from numpy.testing import assert_array_almost_equal
 
 import neural.provide_data
-from neural.two_layer_neural import TwoLayerNeural
-from neural.datasets import Datasets
+from neural.two_layer_neural import TwoLayerNeural, Datasets
 
 
 def setup_neural() -> TwoLayerNeural:
@@ -24,3 +23,10 @@ class TwoLayerNeuralTest(unittest.TestCase):
                     0.7896127455170074, 0.5666891692622699, 0.42785055300952435, 0.3886295210179232,
                     0.3168363764198969, 0.8657427046740684, 0.5576544572719794, 0.7183489046929683]
         assert_array_almost_equal(expected, neural_net.forward_step(range(2)).flatten())
+
+    def test_epoch_mean_square_stage6(self):
+        neural_net = setup_neural()
+        subrange = range(2)
+        neural_net.epoch(subrange)
+        expected = 0.17205149953305524
+        self.assertAlmostEqual(expected, neural_net.mean_square_error(subrange))
